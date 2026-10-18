@@ -1,7 +1,7 @@
 # The Question Worksheet
 
-Ask these of your `marketing-doc.md`, in order, with Claude Chat as your first interviewer.
-After each gate, make a go / no-go call. The best outcome is sometimes: **don't build this.**
+One page. Five gates. Ask them of your marketing document, in order, with Claude Chat as your first interviewer. About thirty minutes.
+A first draft is always too optimistic. After each gate, make a go / no-go call. The best outcome is sometimes: **don't build this.** Say so out loud: a kill at this stage costs a conversation, not a quarter.
 The model does not replace talking to real users. It makes you walk into those conversations with sharper questions.
 
 Project: ______________________  Date: ____________
@@ -67,4 +67,4 @@ Decision: ☐ Go ☐ Reshape ☐ Stop  Notes: ______________________
 4. Then run `red-team-prompts.md`.
 5. Only when all five gates pass, derive `design-plan.md`, `build-plan.md`, and `CLAUDE.md`.
 
-*Note: the talk's main slides show a 21-question funnel; this worksheet is the 25-question appendix version.*
+*Note: the talk's main slides (11–12) show a 21-question version. This worksheet is the 25-question appendix version (slides 40–41), which adds questions 6, 12, 21 and 24 and widens the market-size question (8) to include the addressable audience. For the short version, skip 6, 12, 21 and 24.*

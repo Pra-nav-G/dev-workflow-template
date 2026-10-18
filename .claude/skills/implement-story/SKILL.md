@@ -13,7 +13,7 @@ Input: a story id (e.g. `S-14`). If none is given, pick the next unfinished stor
 2. **Stop and ask** if the story has an open question or touches auth, payments, or personal data.
 3. **Plan** briefly: files to touch, tokens/components to use, tests to write. Share the plan before coding.
 4. **Branch:** `git switch -c s<id>-<short-name>`.
-5. **Build** only what the acceptance criteria require. Use tokens from `design-system/tokens.css` and existing components. No new dependencies without asking.
+5. **Build** only what the acceptance criteria require. Use tokens from `design-system/tokens.css` and the components (with all their states) specified in `design-system/components.md`. No new dependencies without asking.
 6. **Test:** write tests for each acceptance criterion. Run lint and tests until clean.
 7. **Update docs** in the same change: tick tasks and status in `build-plan.md`, add any new rule to `CLAUDE.md` (lessons learned).
 8. **Commit** in small steps: `S-<id>: <plain description>`.

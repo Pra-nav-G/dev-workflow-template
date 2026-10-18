@@ -7,6 +7,8 @@ Branch: `s[id]-[short-name]`
 - [bullet]
 
 ## Acceptance criteria
+<!-- Copy each AC from build-plan.md so the reviewer checks boxes instead of guessing what done meant.
+     e.g. AC1 tag filter persists in the URL · AC2 empty state uses the design system · AC3 tests added, lint clean -->
 - [ ] AC1 [copy from build-plan.md]
 - [ ] AC2 [empty/error states use the design system]
 - [ ] AC3 [tests added, lint clean]

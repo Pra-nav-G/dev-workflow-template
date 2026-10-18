@@ -12,27 +12,35 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: npm
-
-      - name: Install
-        run: npm ci
-
-      - name: Lint
-        run: npm run lint --if-present
-
-      - name: Test
-        run: npm test --if-present
-
-      - name: Build
-        run: npm run build --if-present
-
-      # Simple guard: fail if a .env file was committed
+      # Always runs, even before the project has code: fail if a .env file was committed
       - name: Block committed env files
         run: |
           if git ls-files | grep -E '(^|/)\.env($|\.)' | grep -v '\.env\.example$'; then
             echo "A .env file is tracked. Remove it and rotate any secrets."
             exit 1
           fi
+
+      # The Node steps run only once the project has a package.json.
+      # Until then (a fresh copy of this template) CI passes on the check above.
+      - uses: actions/setup-node@v4
+        if: hashFiles('package.json') != ''
+        with:
+          node-version: 22
+          cache: ${{ hashFiles('package-lock.json') != '' && 'npm' || '' }}
+
+      - name: Install
+        if: hashFiles('package.json') != ''
+        run: |
+          if [ -f package-lock.json ]; then npm ci; else npm install; fi
+
+      - name: Lint
+        if: hashFiles('package.json') != ''
+        run: npm run lint --if-present
+
+      - name: Test
+        if: hashFiles('package.json') != ''
+        run: npm test --if-present
+
+      - name: Build
+        if: hashFiles('package.json') != ''
+        run: npm run build --if-present

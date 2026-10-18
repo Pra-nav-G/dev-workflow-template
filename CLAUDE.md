@@ -1,3 +1,8 @@
+<!--
+Steering file: the slides call it SteeringFile.md. Keep it named CLAUDE.md at the repo root so Claude Code reads it automatically.
+Keep it short, specific, and about HOW, not what (epics say what).
+Anti-patterns: pasting the whole spec in here · vague virtues ("write clean code") · rules nobody enforces.
+-->
 # Project: [Project Name]
 
 ## Purpose
@@ -5,7 +10,7 @@
 Plan: see `build-plan.md`. Spec: see `marketing-doc.md`. Design system: see `design-system/`.
 
 ## Stack & conventions
-- [Next.js 15, TypeScript strict, Tailwind] — tokens come from `/design-system/tokens.css`
+- [Next.js 15, TypeScript strict, Tailwind] — tokens come from `/design-system/tokens.css` (Tailwind theme: `/design-system/tailwind.config.js`); component props and states in `/design-system/components.md`
 - Never add a dependency without asking
 - Prefer small, pure functions; no dead code
 - File and branch naming: `s14-filter-by-tag`, components in PascalCase

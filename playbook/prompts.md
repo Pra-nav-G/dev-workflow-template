@@ -23,15 +23,22 @@ answers, then give me a go / sharpen / stop recommendation with reasons.
 ```
 
 ### Red-team
-See `red-team-prompts.md`.
+Same conversation, about half an hour. See `red-team-prompts.md`.
 
 ### Handoff — derive the three files
+As on the slide:
 ```
-Now act as my product owner. From marketing-doc.md, write design-plan.md,
-build-plan.md (epics, user stories, tasks, acceptance criteria, non-goals),
-and a first SteeringFile.md. Derive everything from the document, not from
-memory. Every story must reference screens and every screen must map to a story.
+Now act as my product owner. From marketing-doc.md,
+write design-plan.md, build-plan.md (epics, user stories,
+tasks, acceptance criteria), and a first SteeringFile.md.
 ```
+Optional additions that enforce the rules from the same slide:
+```
+Include non-goals in build-plan.md. Derive everything from marketing-doc.md,
+not from memory. Every story must reference screens and every screen must
+map to a story. Use the templates in this repo as the structure.
+```
+**SteeringFile.md = CLAUDE.md.** The slide calls the steering file `SteeringFile.md`. Claude Code reads it automatically only when it's named `CLAUDE.md` at the repo root, so save it as `CLAUDE.md`.
 
 ---
 
@@ -45,14 +52,14 @@ system from it: colour, type scale, spacing, radii and states first, then
 components with variants, then the screens in the inventory. Export the
 tokens as CSS variables.
 ```
-Order: tokens → components → patterns → pages. Never pages first.
-Export: Share → download zip (tokens, components, pages). Save tokens to `design-system/tokens.css`.
+Order: colour, type scale, spacing, radii, elevation, states → components with variants and states → patterns → pages. Never pages first. Tweak until it feels right, then stop fiddling.
+Export: Share → download a zip (tokens, components, pages), or copy the link. Save tokens to `design-system/tokens.css` (or a Tailwind config) and component specs to `design-system/components.md`.
 
 ---
 
 ## 3. BUILD (Claude Code)
 
-Open Claude Code in the project folder with `build-plan.md`, the design-system export, and `CLAUDE.md` at the root. Start in plan mode.
+Open Claude Code in the project folder with `build-plan.md`, the design-system export, and `CLAUDE.md` at the root. Start in plan mode: have the agent read the epics and tokens and propose a build order before it writes a line. Review the order, approve it, then go.
 
 ### Build order
 ```

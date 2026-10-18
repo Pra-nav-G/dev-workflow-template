@@ -2,6 +2,7 @@
 
 > Source of truth. Every other file (design-plan.md, build-plan.md, CLAUDE.md) derives from this one.
 > When the answer to anything below changes, change it HERE first.
+> If you have a project brief or pitch, start from it: this document is that brief, expanded and stress-tested.
 
 **Status:** Draft v0.1 · **Owner:** [name] · **Last updated:** [date]
 
@@ -11,6 +12,22 @@
 
 For **[target customer]** who **[has this problem]**, **[Project Name]** is a **[category]** that **[key benefit]**.
 Unlike **[closest alternative]**, we **[structural difference]**.
+
+## 1b. Lean Canvas (one-screen summary)
+
+Fill this in with Claude Chat as market analyst first, product owner second. Keep each box to a line or two.
+If you can't fill a box, you aren't ready to build yet. That's useful to learn on day one.
+
+| Problem | Solution | Unique value proposition | Unfair advantage | Customer segments |
+|---|---|---|---|---|
+| Top 3 problems | Top 3 features | One clear, compelling message | Can't be easily copied or bought | Target customers / users |
+| | | | | |
+| **Existing alternatives** | **Key metrics** | **High-level concept** | **Channels** | **Early adopters** |
+| | | | | |
+
+| Cost structure | Revenue streams |
+|---|---|
+| | |
 
 ## 2. Problem (Gate 1)
 

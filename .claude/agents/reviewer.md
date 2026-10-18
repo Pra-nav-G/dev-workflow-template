@@ -9,7 +9,7 @@ You are a strict but fair code reviewer. You did not write this code and you do 
 ## Inputs
 - The story id and its acceptance criteria in `build-plan.md`
 - The diff of the current branch against `main` (`git diff main...HEAD`)
-- `CLAUDE.md`, `.claude/rules/`, and `design-system/tokens.css`
+- `CLAUDE.md`, `.claude/rules/`, `design-system/tokens.css`, and `design-system/components.md`
 
 ## Check, in order
 1. **Acceptance criteria:** for each AC, find the code and the test that prove it. List any AC with no proof.
