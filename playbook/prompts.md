@@ -1,42 +1,97 @@
-# Red-Team Prompts
+# Prompt Library — Think → Design → Build
 
-The funnel sharpens the plan. These try to break it. Run them in the same conversation, about half an hour.
-Write every answer back into `marketing-doc.md` §7. A spec that names its own failure modes is worth more than one that only argues for itself.
+Copy, fill in the brackets, paste.
 
-## Part A — Attack the document
+---
 
-### 1. Run the pre-mortem
-> It's 18 months from now and this project is dead. Write the post-mortem.
+## 1. THINK (Claude Chat)
 
-Follow-up:
-> Which of these causes could I test in the next 30 days? Rank them by how likely they are to be the real cause.
+### Opening prompt
+```
+I want to build [your idea]. Act as a market analyst: who is this for,
+who already does it, and what would make mine worth using? Push back
+where the idea is weak. When we are done, write everything we agreed
+into a single file called marketing-doc.md.
+```
+Tips: ask for pushback explicitly; name the output file in the first prompt; if you have a brief or pitch, paste it in first.
 
-The fatal risk is usually the one you have been avoiding.
+### Question funnel
+```
+Now interrogate marketing-doc.md using the five gates in question-worksheet.md
+(Problem, Market, Position, Money, Feasibility). Ask one gate at a time, wait for my
+answers, then give me a go / sharpen / stop recommendation with reasons.
+```
 
-### 2. Name the load-bearing assumption
-> List every assumption in this plan. Rank them by how much the plan depends on each and how little evidence I have for it.
+### Red-team
+See `red-team-prompts.md`.
 
-Test the top of the list first, not the fun stuff.
+### Handoff — derive the three files
+```
+Now act as my product owner. From marketing-doc.md, write design-plan.md,
+build-plan.md (epics, user stories, tasks, acceptance criteria, non-goals),
+and a first SteeringFile.md. Derive everything from the document, not from
+memory. Every story must reference screens and every screen must map to a story.
+```
 
-### 3. Set the kill criteria first
-> What result from this experiment should tell me to stop?
+---
 
-Deciding in advance removes the sunk-cost argument you'd otherwise have with yourself at 2am.
+## 2. DESIGN (claude.ai/design)
 
-## Part B — Red-team the model that helped you
+Upload `design-plan.md` and screenshots of your references (including anti-references).
 
-### 4. Argue with me
-> Be the toughest buyer I will ever meet. What are your top three objections, ranked by which one kills the deal?
+```
+Here is design-plan.md and screenshots of my references. Build me a design
+system from it: colour, type scale, spacing, radii and states first, then
+components with variants, then the screens in the inventory. Export the
+tokens as CSS variables.
+```
+Order: tokens → components → patterns → pages. Never pages first.
+Export: Share → download zip (tokens, components, pages). Save tokens to `design-system/tokens.css`.
 
-### 5. Second opinion on the second opinion
-> Now critique the advice you just gave me. Where is it wrong, overconfident, or missing context?
+---
 
-A confident answer is not a validated one. Run the same question through a second model and compare.
+## 3. BUILD (Claude Code)
 
-### 6. Say what you don't know
-> Ask me ten questions about this project that I should be able to answer but probably can't.
+Open Claude Code in the project folder with `build-plan.md`, the design-system export, and `CLAUDE.md` at the root. Start in plan mode.
 
-The gaps it exposes are your research list.
+### Build order
+```
+Here is build-plan.md and my design system. Plan the build order off the
+epics, and tell me where to start.
+```
 
-## Honest inputs
-This works only with the real numbers and the real doubts. Hide them and you get advice about a project you aren't building.
+### Walking skeleton
+```
+Build Sprint 0 as a walking skeleton: one thin vertical slice through the
+whole stack using real tokens from design-system/. Set up CI, .gitignore
+(with .env), and commit the docs. Stop and show me before moving on.
+```
+
+### Roadmap
+```
+Build a roadmap and backlog from the epics in build-plan.md, in dependency
+order, and write it into build-plan.md.
+```
+
+### Story loop
+```
+Implement S-[id] using the implement-story skill.
+```
+
+### Review
+```
+Use the reviewer subagent to review this branch against the acceptance
+criteria for S-[id].
+```
+
+### Turn a correction into a rule
+```
+You got [X] wrong. Add a one-line rule to CLAUDE.md under "Lessons learned"
+so it doesn't happen again.
+```
+
+### Explain before I merge
+```
+Explain the block in [file] lines [a–b] in plain language, and tell me
+what would break if I removed it.
+```
