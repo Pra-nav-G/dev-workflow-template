@@ -23,6 +23,14 @@ Two people prompting the same files against different assumptions is the classic
 
 **Merge on green:** tests pass, criteria met, design system used.
 
+### Make the gates real on GitHub
+1. Put each person's GitHub username against their role in `.github/CODEOWNERS`. GitHub then asks the owner to review any PR that touches their files.
+2. Settings → Branches → **Add rule** for `main`:
+   - **Require a pull request before merging** (no direct commits, for people or agents)
+   - **Require status checks to pass** → select `test` (CI is the referee)
+   - **Require review from Code Owners** (teams only; on a solo project you can't approve your own PR)
+3. Track stories as GitHub issues with the **User story** template, and close them from the PR ("Closes #12").
+
 ## 48-hour budget
 | Time | Activity |
 |---|---|

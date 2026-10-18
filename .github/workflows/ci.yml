@@ -20,8 +20,12 @@ jobs:
             exit 1
           fi
 
+      # Always runs: no hard-coded colours or pixel sizes in src/ (passes until src/ exists)
+      - name: Design-system tokens only
+        run: bash scripts/check-design-tokens.sh src
+
       # The Node steps run only once the project has a package.json.
-      # Until then (a fresh copy of this template) CI passes on the check above.
+      # Until then (a fresh copy of this template) CI passes on the checks above.
       - uses: actions/setup-node@v4
         if: hashFiles('package.json') != ''
         with:
@@ -44,3 +48,28 @@ jobs:
       - name: Build
         if: hashFiles('package.json') != ''
         run: npm run build --if-present
+
+  # "Docs move in the same PR as the code." Warns (doesn't fail) when a PR changes
+  # code but none of the planning docs.
+  docs-drift:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check docs moved with the code
+        env:
+          BASE: ${{ github.event.pull_request.base.sha }}
+          HEAD: ${{ github.event.pull_request.head.sha }}
+        run: |
+          changed="$(git diff --name-only "$BASE" "$HEAD")"
+          echo "Changed files:"; echo "$changed"
+          code="$(echo "$changed" | grep -E '^(src|app|lib|server|api|components|pages)/' || true)"
+          docs="$(echo "$changed" | grep -E '^(build-plan\.md|marketing-doc\.md|design-plan\.md|CLAUDE\.md|docs/)' || true)"
+          if [ -n "$code" ] && [ -z "$docs" ]; then
+            echo "::warning title=Docs not updated::This PR changes code but not build-plan.md, CLAUDE.md, marketing-doc.md, design-plan.md or docs/. At minimum, tick the story's tasks and status in build-plan.md."
+          else
+            echo "Docs check OK."
+          fi

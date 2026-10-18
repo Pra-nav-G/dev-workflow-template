@@ -105,6 +105,16 @@ If you can't fill a box, you aren't ready to build yet. That's useful to learn o
 ### Questions I should be able to answer but can't (research list)
 -
 
+## 7b. User interview log
+
+The model is your first interviewer, not your last. Log real conversations here (guide: `playbook/user-interview-guide.md`).
+
+| # | Date | Who (role, context; no personal details) | Key quotes | Assumption tested (§7 #) | Supports / weakens |
+|---|---|---|---|---|---|
+| 1 | | | "" | | |
+
+**Patterns after 5 interviews:** [what came up 3+ times; what this changes in §2–6]
+
 ## 8. Downstream files
 
 - [ ] design-plan.md derived from this document

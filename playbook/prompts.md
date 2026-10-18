@@ -1,6 +1,6 @@
 # Prompt Library — Think → Design → Build
 
-Copy, fill in the brackets, paste.
+Copy, fill in the brackets, paste. Sections 1–3 follow the talk; section 4 adds prompts built on the same files.
 
 ---
 
@@ -69,6 +69,10 @@ epics, and tell me where to start.
 
 ### Walking skeleton
 ```
+/sprint-0
+```
+Or, without the slash command:
+```
 Build Sprint 0 as a walking skeleton: one thin vertical slice through the
 whole stack using real tokens from design-system/. Set up CI, .gitignore
 (with .env), and commit the docs. Stop and show me before moving on.
@@ -82,7 +86,7 @@ order, and write it into build-plan.md.
 
 ### Story loop
 ```
-Implement S-[id] using the implement-story skill.
+/implement-story S-[id]
 ```
 
 ### Review
@@ -93,12 +97,90 @@ criteria for S-[id].
 
 ### Turn a correction into a rule
 ```
-You got [X] wrong. Add a one-line rule to CLAUDE.md under "Lessons learned"
-so it doesn't happen again.
+/add-rule [what went wrong]
 ```
+Or: "You got [X] wrong. Add a one-line rule to CLAUDE.md under 'Lessons learned' so it doesn't happen again."
 
 ### Explain before I merge
 ```
 Explain the block in [file] lines [a–b] in plain language, and tell me
 what would break if I removed it.
+```
+
+### Change scope (Claude Code)
+```
+/sync-docs [the change]
+```
+Updates `marketing-doc.md` first, then everything derived from it.
+
+### Before a demo, grading or interview (Claude Code)
+```
+/prep-review [audience]
+```
+
+### All slash commands in this template
+| Command | What it does |
+|---|---|
+| `/sprint-0` | Builds the walking skeleton from `build-plan.md`, then stops for review |
+| `/implement-story S-[id]` | One story end to end: branch, build, test, docs, PR |
+| `/add-rule [what went wrong]` | Turns a correction into a `CLAUDE.md` rule |
+| `/sync-docs [change]` | Propagates a scope change from `marketing-doc.md` to every derived file |
+| `/prep-review [audience]` | Drafts evidence-backed answers to reviewer questions from the repo's history |
+
+The `reviewer` subagent checks a branch against its acceptance criteria: "Use the reviewer subagent on this branch."
+
+---
+
+## 4. ANY TIME (Claude Chat)
+
+Not in the talk, but built on the same files. Paste `marketing-doc.md` into the chat first.
+
+### Interview script (before talking to real users)
+```
+From the ranked assumptions in marketing-doc.md, write a 20-minute interview
+script to test the top three with my ideal first customer. Ask only about
+their past behaviour, never about my idea or what they'd do in future. For each
+assumption, tell me what answer would count as evidence against it.
+```
+Guide: `playbook/user-interview-guide.md`.
+
+### Make sense of interview notes
+```
+Here are my notes from [n] user interviews. Which assumptions in
+marketing-doc.md do they support, which do they weaken, and has any kill
+criterion been hit? Separate what people did from what they said they'd do.
+Then list the exact edits I should make to marketing-doc.md.
+```
+
+### Scope change (start at the source of truth)
+```
+I want to change [the change]. First update marketing-doc.md and add a row to
+its decision log. Then list everything in design-plan.md, build-plan.md and
+CLAUDE.md that is now out of date, and which stories are affected. Don't
+edit those until I approve the list.
+```
+
+### Pitch or demo script
+```
+From marketing-doc.md, write a [60-second / 3-minute] pitch for [judges /
+a professor / an employer / a first customer]. Use the positioning sentence,
+name the customer, the alternative and the wedge, and say one thing we
+deliberately won't do. No claims the document doesn't support.
+```
+The pitch is an edit of the marketing document, not a new story.
+
+### README
+```
+From marketing-doc.md, build-plan.md and CLAUDE.md, fill in README.md: what it
+does and who it's for in five lines, how to run it, what we cut and why, and
+an honest AI-use disclosure. Leave [brackets] where only I know the answer.
+```
+
+### Mock interview
+```
+Act as a [technical interviewer / capstone examiner]. Ask me these one at a
+time and push back on vague answers: walk me through it; what did you cut and
+why; where was the AI wrong and how did you catch it; show me a correction
+that became a rule; what would you rewrite now. Score each answer and tell me
+what evidence from the repo would make it stronger.
 ```

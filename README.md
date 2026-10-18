@@ -27,7 +27,8 @@ npm run dev
 | `design-system/` | Exported tokens and component specs |
 | `build-plan.md` | Epics, stories, acceptance criteria, roadmap |
 | `CLAUDE.md` | Operating rules for the coding agent |
-| `.claude/` | Rules, skills, subagents, hooks, permissions |
+| `.claude/` | Rules, skills (slash commands), subagents, hooks, permissions |
+| `docs/decisions/` | Technical decisions and why they were made |
 
 ## Workflow
 Think (Claude Chat) → Design (Claude Design) → Build (Claude Code).

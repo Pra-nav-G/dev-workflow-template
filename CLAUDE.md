@@ -20,6 +20,7 @@ Plan: see `build-plan.md`. Spec: see `marketing-doc.md`. Design system: see `des
 - Dev: `npm run dev`
 - Test: `npm test`
 - Lint: `npm run lint`
+- Design-token check: `bash scripts/check-design-tokens.sh`
 
 ## Definition of done
 - Acceptance criteria in the story pass
@@ -31,6 +32,8 @@ Plan: see `build-plan.md`. Spec: see `marketing-doc.md`. Design system: see `des
 - One branch per story; story id in branch name and commit message ("S-14: filter list by tag")
 - Never commit directly to `main`
 - Start non-trivial work in plan mode and propose before building
+- Record hard-to-reverse technical decisions in `docs/decisions/` (copy `0000-template.md`)
+- New environment variables go in `.env.example` with a placeholder, never in code
 
 ## Before assuming, ask
 - Anything touching auth, payments, or personal data
@@ -43,5 +46,5 @@ Plan: see `build-plan.md`. Spec: see `marketing-doc.md`. Design system: see `des
 - Skip a gate (tests, lint, acceptance criteria)
 - Add features that are not in `build-plan.md`
 
-## Lessons learned (each correction becomes a rule)
+## Lessons learned (each correction becomes a rule; use /add-rule)
 - [date] [what the agent got wrong] → [rule that prevents it]

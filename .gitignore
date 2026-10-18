@@ -26,5 +26,9 @@ Thumbs.db
 *.log
 npm-debug.log*
 
-# Claude Code local-only settings (shared settings.json IS committed)
+# Claude Code local-only files (shared settings.json and CLAUDE.md ARE committed)
 .claude/settings.local.json
+CLAUDE.local.md
+
+# Personal review prep from /prep-review
+docs/review-prep.md

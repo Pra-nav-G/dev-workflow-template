@@ -51,6 +51,25 @@ Talk by DevCon Dave, Edmonton Unlimited, September 2026. Docs and install: code.
 
 The implement-story skill (`.claude/skills/`) puts slides 24 and 31 into practice as a repeatable story loop.
 
+## Beyond the slides
+
+These aren't in the talk. They enforce its rules (slide 26 warns against "rules nobody enforces") or fill a step it points to but doesn't cover.
+
+| Addition | Puts this from the talk into practice |
+|---|---|
+| `scripts/check-design-tokens.sh` (in CI) | "A story is not done unless it uses the system" (slide 19) |
+| `.github/CODEOWNERS` + branch protection steps | "Every gate has a named owner" (slide 27) |
+| docs-drift warning in CI | "Docs move in the same PR as the code" (slide 31) |
+| `.claude/hooks/format-file.sh` | Rules enforced by tooling, not by asking (slide 26) |
+| `playbook/user-interview-guide.md`, `marketing-doc.md` §7b | "It does not replace talking to real users" (slide 10) |
+| `/sprint-0` | Walking skeleton (slide 24) |
+| `/add-rule` | "Show me one correction that became a rule" (slides 34, 36) |
+| `/sync-docs` | "Every change starts at the source of truth" (slide 35) |
+| `/prep-review`, mock interview prompt | "Answers worth having ready" (slide 34) |
+| Pitch prompt | "The pitch is an edit of it" (slide 21) |
+| `scripts/init.sh`, `.env.example`, `LICENSE`, `CLAUDE.local.md` | Setup and hygiene |
+| `docs/decisions/`, story issue template | Decision trail and stories that reviewers can read (slides 21, 34) |
+
 ## The toolkit (slide 30): five tools, one repo, nothing exotic
 
 | Tool | Where | Used for |
