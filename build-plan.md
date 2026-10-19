@@ -15,9 +15,10 @@
 
 ## 3. Definition of done (applies to every story)
 
-- [ ] Acceptance criteria below all pass
+- [ ] Acceptance criteria below all pass, each with a test written first
 - [ ] Uses design-system tokens/components; no bespoke styles
-- [ ] Tests written and passing; lint clean
+- [ ] Every check in `CLAUDE.md` → Commands passes, run after the last change (output shown in the PR)
+- [ ] Security-reviewed if the story touches auth, payments, personal data, file uploads or user-generated content
 - [ ] Docs updated in the same PR (build-plan.md, CLAUDE.md if rules changed)
 - [ ] PR description carries the acceptance criteria as a checklist
 
@@ -39,7 +40,7 @@ One thin vertical slice through the whole stack, using real design tokens.
 - [ ] `design-system/tokens.css` imported and used by one real component
 - [ ] One route/screen renders end to end (UI → logic → data)
 - [ ] CI runs lint + tests on push (green badge)
-- [ ] marketing-doc.md, build-plan.md, CLAUDE.md, design-system/ committed
+- [ ] marketing-doc.md, design-plan.md, build-plan.md, CLAUDE.md, design-system/ committed
 - [ ] `.env` in `.gitignore`; secret-blocking hook active
 
 ## 6. Epics and stories
@@ -66,7 +67,7 @@ One thin vertical slice through the whole stack, using real design tokens.
 
 #### S-01 — [Story title]
 - **As a** … **I want** … **so that** …
-- **Screens:** SC-0X
+- **Screens:** SC-02
 - **Depends on:** S-00
 - **Acceptance criteria:**
   - AC1
@@ -82,6 +83,7 @@ One thin vertical slice through the whole stack, using real design tokens.
 |---|---|---|---|
 | S-00 | SC-01 | E0 | ☐ |
 | S-01 | SC-02 | E1 | ☐ |
+| S-02 | SC-03 | E1 | ☐ |
 
 ## 8. Workshop cycle (repeat)
 

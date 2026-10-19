@@ -27,7 +27,14 @@ npm run dev
 | `design-system/` | Exported tokens and component specs |
 | `build-plan.md` | Epics, stories, acceptance criteria, roadmap |
 | `CLAUDE.md` | Operating rules for the coding agent |
-| `.claude/` | Rules, skills, subagents, hooks, permissions |
+| `.claude/` | Rules, skills (slash commands), subagents, hooks, permissions |
+| `docs/decisions/` | Technical decisions and why they were made |
+| `docs/changes/` | Scope changes and why the plan changed |
+| `SECURITY.md` | How to report a vulnerability |
+
+## Quality
+- Tests written first for every acceptance criterion; CI runs lint, tests, end-to-end tests and build on every push
+- Security: secret-blocking hook, `npm audit`, dependency review, CodeQL and Dependabot; independent security review for sensitive changes
 
 ## Workflow
 Think (Claude Chat) → Design (Claude Design) → Build (Claude Code).
@@ -45,4 +52,4 @@ One branch per story, PRs carry acceptance criteria, docs move in the same PR as
 - [Mistake] → caught by [test/review] → became rule in `CLAUDE.md`: "[rule]"
 
 ## License
-[MIT / course project / all rights reserved]
+MIT, see `LICENSE`. If your course or employer requires different terms, replace `LICENSE` and update this line.
