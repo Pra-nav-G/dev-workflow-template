@@ -46,6 +46,7 @@ You'll know the agent is guessing when it changes several things at once, wraps 
 | Security reviewer | `security-reviewer` subagent | Access-control and logic flaws scanners miss |
 
 **Turn these on in GitHub (once per repo)** — Settings → Code security:
+- **Dependency graph** (required by the dependency-review check in CI)
 - Secret scanning and **push protection** (blocks pushes containing known secret formats)
 - Dependabot alerts and security updates
 - Private vulnerability reporting (so `SECURITY.md` works)

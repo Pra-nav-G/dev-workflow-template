@@ -27,7 +27,7 @@ Use the `security-reviewer` subagent with scope "full audit" (or the focus above
 
 ## 3. GitHub settings (tell the user what to check; you can't change these)
 - Settings → Code security: **Secret scanning** and **Push protection** on (free for public repos)
-- **Dependabot alerts** on; `.github/dependabot.yml` covers the ecosystems in use
+- **Dependency graph** and **Dependabot alerts** on; `.github/dependabot.yml` covers the ecosystems in use
 - **CodeQL** workflow (`.github/workflows/codeql.yml`) has run on the latest code with no open alerts
 - Branch protection on `main` requires the `test` check
 

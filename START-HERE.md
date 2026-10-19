@@ -82,7 +82,7 @@ These run automatically when relevant: **tdd** (test first), **debug** (root cau
    bash scripts/init.sh "Your Project Name"
    ```
    It fills in the project name, CI badge, CODEOWNERS and LICENSE, removes the plugin packaging, and prints how to protect `main`.
-2. **Turn on GitHub security** (Settings → Code security): secret scanning with push protection, Dependabot alerts, private vulnerability reporting.
+2. **Turn on GitHub security** (Settings → Code security): Dependency graph (needed for dependency review in CI), secret scanning with push protection, Dependabot alerts, private vulnerability reporting.
 3. **Think:** open Claude Chat, use the opening prompt in `playbook/prompts.md`, run the question worksheet, then the red-team prompts. Paste the results into `marketing-doc.md`.
 4. **Talk to real users:** use `playbook/user-interview-guide.md` to test your top three assumptions with about five people. Log them in `marketing-doc.md` §7b. If a kill criterion is hit, say so out loud.
 5. **Handoff:** have Claude Chat derive `design-plan.md`, `build-plan.md`, and the steering file from `marketing-doc.md`. Replace the template versions. The talk calls the steering file `SteeringFile.md`; save it as `CLAUDE.md` so Claude Code loads it automatically.
