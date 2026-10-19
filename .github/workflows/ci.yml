@@ -24,6 +24,16 @@ jobs:
       - name: Design-system tokens only
         run: bash scripts/check-design-tokens.sh src
 
+      # The plugin ships subagents from agents/; they must match .claude/agents/ exactly
+      - name: Plugin agents match .claude/agents
+        run: |
+          if [ -d agents ]; then
+            diff -r .claude/agents agents || {
+              echo "agents/ is out of sync. Edit .claude/agents/, then run: cp .claude/agents/*.md agents/"
+              exit 1
+            }
+          fi
+
       # The Node steps run only once the project has a package.json.
       # Until then (a fresh copy of this template) CI passes on the checks above.
       - uses: actions/setup-node@v4
@@ -45,9 +55,31 @@ jobs:
         if: hashFiles('package.json') != ''
         run: npm test --if-present
 
+      # End-to-end tests for critical paths, if the project defines them (e.g. Playwright)
+      - name: End-to-end tests
+        if: hashFiles('package.json') != ''
+        run: npm run test:e2e --if-present
+
       - name: Build
         if: hashFiles('package.json') != ''
         run: npm run build --if-present
+
+      # Fails on high or critical vulnerabilities in production dependencies
+      - name: Dependency audit
+        if: hashFiles('package-lock.json') != ''
+        run: npm audit --omit=dev --audit-level=high
+
+  # Blocks PRs that add dependencies with known vulnerabilities
+  dependency-review:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/dependency-review-action@v5
+        with:
+          fail-on-severity: high
 
   # "Docs move in the same PR as the code." Warns (doesn't fail) when a PR changes
   # code but none of the planning docs.

@@ -15,9 +15,10 @@
 
 ## 3. Definition of done (applies to every story)
 
-- [ ] Acceptance criteria below all pass
+- [ ] Acceptance criteria below all pass, each with a test written first
 - [ ] Uses design-system tokens/components; no bespoke styles
-- [ ] Tests written and passing; lint clean
+- [ ] Tests, lint and token check pass, run after the last change (output shown in the PR)
+- [ ] Security-reviewed if the story touches auth, payments, personal data or uploads
 - [ ] Docs updated in the same PR (build-plan.md, CLAUDE.md if rules changed)
 - [ ] PR description carries the acceptance criteria as a checklist
 

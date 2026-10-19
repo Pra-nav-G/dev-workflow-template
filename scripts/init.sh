@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 # scripts/init.sh: run once after "Use this template", from the repo root.
 #
-#   bash scripts/init.sh "My Project" [github-owner]
+#   bash scripts/init.sh "My Project" [github-owner] [--keep-plugin]
 #
+# - Removes the plugin packaging (.claude-plugin/, agents/, .claude/plugin-hooks.json),
+#   which only the template repo needs; pass --keep-plugin to keep it
 # - Replaces [Project Name] in the docs
 # - Points the README CI badge at your repo (from git remote)
 # - Sets you as owner in .github/CODEOWNERS and the LICENSE
@@ -14,8 +16,13 @@ set -euo pipefail
 
 cd "$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
 
-name="${1:-}"
-owner="${2:-}"
+keep_plugin=0
+args=()
+for a in "$@"; do
+  if [ "$a" = "--keep-plugin" ]; then keep_plugin=1; else args+=("$a"); fi
+done
+name="${args[0]:-}"
+owner="${args[1]:-}"
 
 if [ -z "$name" ]; then
   read -r -p "Project name: " name
@@ -59,10 +66,15 @@ if [ -f LICENSE ]; then
   perl -pi -e 's/^Copyright \(c\) .*/Copyright (c) $ENV{INIT_YEAR} $ENV{INIT_OWNER}/' LICENSE
 fi
 
-# 5. Executable bits
+# 5. Plugin packaging: only the template repo publishes the plugin
+if [ "$keep_plugin" -eq 0 ]; then
+  rm -rf .claude-plugin agents .claude/plugin-hooks.json
+fi
+
+# 6. Executable bits
 chmod +x .claude/hooks/*.sh scripts/*.sh 2>/dev/null || true
 
-# 6. Private notes for Claude Code (gitignored)
+# 7. Private notes for Claude Code (gitignored)
 if [ ! -f CLAUDE.local.md ]; then
   cat > CLAUDE.local.md <<'EOF'
 # Personal notes for Claude Code (not committed)

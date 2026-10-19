@@ -29,6 +29,12 @@ npm run dev
 | `CLAUDE.md` | Operating rules for the coding agent |
 | `.claude/` | Rules, skills (slash commands), subagents, hooks, permissions |
 | `docs/decisions/` | Technical decisions and why they were made |
+| `docs/changes/` | Scope changes and why the plan changed |
+| `SECURITY.md` | How to report a vulnerability |
+
+## Quality
+- Tests written first for every acceptance criterion; CI runs lint, tests, end-to-end tests and build on every push
+- Security: secret-blocking hook, `npm audit`, dependency review, CodeQL and Dependabot; independent security review for sensitive changes
 
 ## Workflow
 Think (Claude Chat) → Design (Claude Design) → Build (Claude Code).

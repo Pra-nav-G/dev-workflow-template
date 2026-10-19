@@ -122,12 +122,24 @@ Updates `marketing-doc.md` first, then everything derived from it.
 | Command | What it does |
 |---|---|
 | `/sprint-0` | Builds the walking skeleton from `build-plan.md`, then stops for review |
-| `/implement-story S-[id]` | One story end to end: branch, build, test, docs, PR |
-| `/add-rule [what went wrong]` | Turns a correction into a `CLAUDE.md` rule |
-| `/sync-docs [change]` | Propagates a scope change from `marketing-doc.md` to every derived file |
+| `/grill-me S-[id]` | Interviews you until every open question in a story is resolved |
+| `/implement-story S-[id]` | One story end to end: test-first, debugged, verified, security-reviewed where needed, docs, PR |
+| `/check-spec [scope]` | Reports where code and plan disagree: missing ACs, untested ACs, unplanned code |
+| `/sync-docs [change]` | Writes a change proposal, then propagates it from `marketing-doc.md` to every derived file |
+| `/security-audit [focus]` | Full audit: secrets in history, dependencies, code review, GitHub settings |
+| `/handoff [topic]` | Writes a note so the next session or a teammate can continue |
 | `/prep-review [audience]` | Drafts evidence-backed answers to reviewer questions from the repo's history |
+| `/add-rule [what went wrong]` | Turns a correction into a `CLAUDE.md` rule |
 
-The `reviewer` subagent checks a branch against its acceptance criteria: "Use the reviewer subagent on this branch."
+Used automatically when relevant (you can also type them): `/tdd` (test first), `/debug` (root cause before any fix), `/verify` (evidence before "done").
+
+Subagents: "Use the reviewer subagent on this branch" checks it against the acceptance criteria. "Use the security-reviewer subagent on this branch" checks for secrets, access control, injection and data exposure.
+
+### Fix a bug (Claude Code)
+```
+/debug [the symptom or error message]
+```
+Expect: reproduce → evidence → one hypothesis at a time → a regression test → the fix. Ask "what was the root cause, and which test proves it?"
 
 ---
 
