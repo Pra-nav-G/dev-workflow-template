@@ -19,8 +19,8 @@ Reviewers open the README, `marketing-doc.md`, `CLAUDE.md`, the commit history a
 5. `git log --oneline -50` and merged PR descriptions (especially "Where the agent was wrong" and "AI use").
 6. Tests and the latest CI status.
 
-## Draft (write to `docs/review-prep.md`, which you may gitignore)
-For each question: a 2–3 sentence answer, plus the file, commit or PR that proves it.
+## Draft (write to `docs/review-prep.md`, which is gitignored)
+For each question: a short answer you could say out loud, plus the file, commit or PR that proves it.
 
 1. **Walk me through it:** what it does, for whom, and why this instead of the alternative (from the positioning sentence).
 2. **What did you cut, and why?** (non-goals, cut stories, decision log)
@@ -31,5 +31,5 @@ For each question: a 2–3 sentence answer, plus the file, commit or PR that pro
 
 ## Then
 - List gaps: answers with no evidence, a README over five lines, a red CI badge, missing tests, an empty Lessons learned.
-- Suggest the 2–3 fixes that would most improve the review, smallest first.
+- Suggest the fixes that would most improve the review, smallest first.
 - Offer a mock run: ask the questions one at a time and give feedback on each answer.

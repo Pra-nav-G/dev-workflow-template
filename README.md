@@ -52,4 +52,4 @@ One branch per story, PRs carry acceptance criteria, docs move in the same PR as
 - [Mistake] → caught by [test/review] → became rule in `CLAUDE.md`: "[rule]"
 
 ## License
-[MIT / course project / all rights reserved]
+MIT, see `LICENSE`. If your course or employer requires different terms, replace `LICENSE` and update this line.

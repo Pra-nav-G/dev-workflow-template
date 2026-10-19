@@ -1,5 +1,5 @@
 ---
-name: debug
+name: fix-bug
 description: Systematic debugging for bugs, failing tests, errors, crashes and performance problems. Use whenever something doesn't work as expected, before proposing any fix. Finds the root cause by reproducing, gathering evidence and testing one hypothesis at a time, then fixes it with a regression test.
 argument-hint: [symptom or error message]
 ---
@@ -19,7 +19,6 @@ Symptom: $ARGUMENTS (if empty, the failure currently in front of you)
 - **What changed?** `git log --oneline -15`, `git diff main...HEAD`, recent dependency or config changes. If it used to work, `git bisect` finds the commit.
 - **Where does good data turn bad?** Trace the value backwards from the symptom, one boundary at a time (UI → handler → service → data). Add temporary logging at each boundary rather than guessing.
 - **Find a working example** in the codebase that does something similar, and compare it line by line.
-- Read the relevant code fully. Don't skim.
 
 ## 3. One hypothesis at a time
 - State it explicitly: "I think X causes this because Y."

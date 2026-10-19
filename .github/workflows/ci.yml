@@ -20,9 +20,9 @@ jobs:
             exit 1
           fi
 
-      # Always runs: no hard-coded colours or pixel sizes in src/ (passes until src/ exists)
+      # Always runs: no hard-coded colours or pixel sizes in src/, app/, components/, pages/ (passes until app code exists)
       - name: Design-system tokens only
-        run: bash scripts/check-design-tokens.sh src
+        run: bash scripts/check-design-tokens.sh
 
       # The plugin ships subagents from agents/; they must match .claude/agents/ exactly
       - name: Plugin agents match .claude/agents

@@ -54,7 +54,7 @@ Attach screenshots alongside this file. "Not like X" is often clearer than "like
 
 | Component | Variants | States |
 |---|---|---|
-| Button | primary, secondary, ghost | default, hover, focus, disabled, loading, error |
+| Button | primary, secondary, ghost | default, hover, focus-visible, active, disabled, loading, error |
 | Input | text, select, checkbox | default, focus, filled, error, disabled |
 | Card | default, interactive | default, hover, selected |
 | List | default | default, loading, empty, error |
@@ -64,9 +64,9 @@ Attach screenshots alongside this file. "Not like X" is often clearer than "like
 
 | ID | Screen | Purpose | Stories (from build-plan.md) |
 |---|---|---|---|
-| SC-01 | [Landing] | | S-01 |
-| SC-02 | [Sign up] | | S-02, S-03 |
-| SC-03 | [Dashboard] | | S-04 |
+| SC-01 | [Landing] | | S-00 |
+| SC-02 | [Sign up] | | S-01 |
+| SC-03 | [Dashboard] | | S-02 |
 
 ## 8. Real copy (no lorem ipsum)
 

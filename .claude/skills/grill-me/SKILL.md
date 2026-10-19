@@ -1,6 +1,6 @@
 ---
 name: grill-me
-description: Interview the user about a plan, story or design until every ambiguity is resolved, before any code is written. Run with /grill-me and the story or idea; also use when a story has open questions or vague acceptance criteria.
+description: Interview the user about a plan, story or design until every ambiguity is resolved, before any code is written. Run with /grill-me and the story or idea, especially when a story has open questions or vague acceptance criteria.
 argument-hint: [story id, feature or plan to interrogate]
 disable-model-invocation: true
 ---

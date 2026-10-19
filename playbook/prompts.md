@@ -74,8 +74,8 @@ epics, and tell me where to start.
 Or, without the slash command:
 ```
 Build Sprint 0 as a walking skeleton: one thin vertical slice through the
-whole stack using real tokens from design-system/. Set up CI, .gitignore
-(with .env), and commit the docs. Stop and show me before moving on.
+whole stack using real tokens from design-system/. Make sure CI passes and
+.env is gitignored, and commit the docs. Stop and show me before moving on.
 ```
 
 ### Roadmap
@@ -111,33 +111,21 @@ what would break if I removed it.
 ```
 /sync-docs [the change]
 ```
-Updates `marketing-doc.md` first, then everything derived from it.
+Writes a change proposal for you to approve, then updates `marketing-doc.md` first and everything derived from it after.
 
 ### Before a demo, grading or interview (Claude Code)
 ```
 /prep-review [audience]
 ```
 
-### All slash commands in this template
-| Command | What it does |
-|---|---|
-| `/sprint-0` | Builds the walking skeleton from `build-plan.md`, then stops for review |
-| `/grill-me S-[id]` | Interviews you until every open question in a story is resolved |
-| `/implement-story S-[id]` | One story end to end: test-first, debugged, verified, security-reviewed where needed, docs, PR |
-| `/check-spec [scope]` | Reports where code and plan disagree: missing ACs, untested ACs, unplanned code |
-| `/sync-docs [change]` | Writes a change proposal, then propagates it from `marketing-doc.md` to every derived file |
-| `/security-audit [focus]` | Full audit: secrets in history, dependencies, code review, GitHub settings |
-| `/handoff [topic]` | Writes a note so the next session or a teammate can continue |
-| `/prep-review [audience]` | Drafts evidence-backed answers to reviewer questions from the repo's history |
-| `/add-rule [what went wrong]` | Turns a correction into a `CLAUDE.md` rule |
-
-Used automatically when relevant (you can also type them): `/tdd` (test first), `/debug` (root cause before any fix), `/verify` (evidence before "done").
+### All slash commands
+The full list, with when to use each, is in `START-HERE.md` → Slash commands. Three run on their own when relevant: `tdd` (test first), `fix-bug` (root cause before any fix) and `prove-it` (evidence before "done"); you can also type them.
 
 Subagents: "Use the reviewer subagent on this branch" checks it against the acceptance criteria. "Use the security-reviewer subagent on this branch" checks for secrets, access control, injection and data exposure.
 
 ### Fix a bug (Claude Code)
 ```
-/debug [the symptom or error message]
+/fix-bug [the symptom or error message]
 ```
 Expect: reproduce → evidence → one hypothesis at a time → a regression test → the fix. Ask "what was the root cause, and which test proves it?"
 
@@ -166,11 +154,13 @@ Then list the exact edits I should make to marketing-doc.md.
 
 ### Scope change (start at the source of truth)
 ```
-I want to change [the change]. First update marketing-doc.md and add a row to
-its decision log. Then list everything in design-plan.md, build-plan.md and
-CLAUDE.md that is now out of date, and which stories are affected. Don't
-edit those until I approve the list.
+I want to change [the change]. First write a short change proposal: why,
+what changes, what stays the same, and which stories and screens are
+affected. Once I approve it, update marketing-doc.md and add a row to its
+decision log. Then list everything in design-plan.md, build-plan.md and
+CLAUDE.md that is now out of date. Don't edit those until I approve the list.
 ```
+The same flow as `/sync-docs` in Claude Code. Save the proposal in `docs/changes/`.
 
 ### Pitch or demo script
 ```

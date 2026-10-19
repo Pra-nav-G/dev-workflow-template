@@ -24,5 +24,5 @@ fi
 prettier="${CLAUDE_PROJECT_DIR:-.}/node_modules/.bin/prettier"
 [ -x "$prettier" ] || exit 0
 
-"$prettier" --write --ignore-unknown --log-level warn "$file" >/dev/null 2>&1 || true
+"$prettier" --write --ignore-unknown "$file" >/dev/null 2>&1 || true
 exit 0

@@ -65,6 +65,7 @@ Decision: ☐ Go ☐ Reshape ☐ Stop  Notes: ______________________
 2. Work through one gate at a time. Ask for pushback; the model will cheerlead unless told otherwise.
 3. Write each answer back into `marketing-doc.md`.
 4. Then run `red-team-prompts.md`.
-5. Only when all five gates pass, derive `design-plan.md`, `build-plan.md`, and `CLAUDE.md`.
+5. Test your top assumptions with real people (`user-interview-guide.md`) and update the answers.
+6. Only when all five gates pass, derive `design-plan.md`, `build-plan.md`, and `CLAUDE.md`.
 
 *Note: the talk's main slides (11–12) show a 21-question version. This worksheet is the 25-question appendix version (slides 40–41), which adds questions 6, 12, 21 and 24 and widens the market-size question (8) to include the addressable audience. For the short version, skip 6, 12, 21 and 24.*

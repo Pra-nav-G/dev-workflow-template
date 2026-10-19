@@ -21,7 +21,7 @@ Branch: `s[id]-[short-name]`
 ## Definition of done
 - [ ] Uses design-system tokens/components; no bespoke styles
 - [ ] Tests written first, reviewed by me, and passing (no `.skip`/`.only`, no weakened assertions)
-- [ ] Security-reviewed (`security-reviewer` subagent) if this touches auth, payments, personal data or uploads
+- [ ] Security-reviewed (`security-reviewer` subagent) if this touches auth, payments, personal data, file uploads or user-generated content
 - [ ] Lint clean, CI green
 - [ ] Docs updated in this PR (`build-plan.md`, `CLAUDE.md` if rules changed)
 - [ ] No secrets, no unrelated files, no code I didn't ask for

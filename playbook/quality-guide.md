@@ -1,6 +1,6 @@
 # Quality Guide: Testing, Debugging, Security, Best Practices
 
-The talk says: if you can't explain it, don't merge it, and tests are where your judgment lives. This guide is the human side of that. The agent side lives in `.claude/` (skills, rules, subagents) and runs automatically.
+The talk says: if you can't explain it, don't merge it, and tests are where your judgment lives. This guide is the human side of that. The agent side lives in `.claude/`: rules and hooks apply on their own, the `tdd`, `fix-bug` and `prove-it` skills kick in when relevant, and the rest are slash commands you run.
 
 ## Testing
 
@@ -22,7 +22,7 @@ The talk says: if you can't explain it, don't merge it, and tests are where your
 
 ## Debugging
 
-The `debug` skill makes Claude find the root cause before changing anything:
+The `fix-bug` skill makes Claude find the root cause before changing anything:
 1. **Reproduce** it reliably, ideally as a failing test
 2. **Gather evidence:** what changed (`git log`, `git bisect`), where good data turns bad
 3. **One hypothesis at a time**, undoing failed attempts; stop after three and rethink
@@ -39,7 +39,7 @@ You'll know the agent is guessing when it changes several things at once, wraps 
 | Secrets hook | `.claude/hooks/block-secrets.sh` | Agent committing keys or `.env` |
 | CI `.env` guard | `ci.yml` | Anyone committing `.env` |
 | Dependency audit | `ci.yml` (`npm audit`) | Known-vulnerable packages |
-| Dependency review | `ci.yml` (PRs only) | PRs that add vulnerable packages |
+| Dependency review | `ci.yml` (PRs that change dependency files) | PRs that add vulnerable packages |
 | CodeQL | `codeql.yml` | Injection, XSS and other code-level flaws |
 | Dependabot | `dependabot.yml` | Outdated actions and packages (uncomment npm once you have `package.json`) |
 | Security rules | `.claude/rules/security.md` | What the agent should never write |
@@ -61,21 +61,24 @@ You'll know the agent is guessing when it changes several things at once, wraps 
 
 ## Best practices for working with the agent
 
-- **Ambiguity first:** `/grill-me` on a story before building it. Ten minutes of questions beats a day of rework.
+**Habits**
 - **Small and surgical:** one story per branch, small commits, no drive-by refactors. Big diffs hide bugs.
-- **Evidence over claims:** "done" means the `verify` skill ran the checks and showed the output.
-- **Watch for drift:** run `/check-spec` every few stories and before demos.
-- **Change at the source:** `/sync-docs` writes a change proposal, then updates `marketing-doc.md` first.
-- **Don't lose context:** `/handoff` before ending a long session or passing work on.
+- **Evidence over claims:** "done" means the `prove-it` skill ran the checks and showed the output.
 - **Turn every correction into a rule:** `/add-rule`. Your `CLAUDE.md` should get sharper every week.
-- **Record decisions:** hard-to-reverse technical choices go in `docs/decisions/`.
+- **Record decisions:** hard-to-reverse technical choices go in `docs/decisions/`; scope changes go through `/sync-docs`, which writes a proposal in `docs/changes/` first.
 
-## A week in practice
-| When | Do |
-|---|---|
-| Starting a story | `/grill-me S-xx`, then `/implement-story S-xx` |
-| Something breaks | Let the debug skill find the root cause; ask what proved it |
-| Before merging | `reviewer` subagent; `security-reviewer` for sensitive stories; read the diff yourself |
-| End of a session | `/handoff` |
-| Every few stories | `/check-spec` |
-| Before a demo or launch | `/check-spec`, `/security-audit`, `/prep-review` |
+**A week in practice**
+| When | Do | Why |
+|---|---|---|
+| Starting a story | `/grill-me S-xx`, then `/implement-story S-xx` | Ten minutes of questions beats a day of rework |
+| Something breaks | Let the fix-bug skill find the root cause; ask what proved it | Guessed fixes create new bugs |
+| Before merging | `reviewer` subagent; `security-reviewer` for sensitive stories; read the diff yourself | Nobody grades their own work |
+| End of a session | `/handoff` | The next session starts without re-explaining |
+| Every few stories | `/check-spec` | Catches drift between code and plan early |
+| Before a demo or launch | `/check-spec`, `/security-audit`, `/prep-review` | Evidence ready, holes found first |
+
+**Built into Claude Code (complements this template)**
+- `/verify` (in recent versions) runs your app and checks a change by observing it; `prove-it` runs the checks. Use both for anything visible.
+- `/security-review` gives a quick security pass on the current branch; the `security-reviewer` subagent goes deeper.
+- `/review` reviews the current diff; the `reviewer` subagent also checks it against the story's acceptance criteria.
+- `/doctor prompt-audit` audits `CLAUDE.md`, rules and skills for outdated or conflicting instructions. Run it after editing them.

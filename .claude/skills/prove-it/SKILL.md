@@ -1,11 +1,11 @@
 ---
-name: verify
-description: Verify before claiming anything is done, fixed or passing. Use before saying a task is complete, before committing, before opening a PR, and whenever about to report success. Runs the real checks and shows their output as evidence.
+name: prove-it
+description: Prove work is done before claiming it — run every check fresh and show the output as evidence. Use before saying a story or fix is complete, before opening a PR, and whenever about to report success. (Small commits inside a TDD loop don't need the full run.)
 ---
 
-# Verify before you claim it's done
+# Prove it before you say it's done
 
-"It should work" is not evidence. Before saying anything is done, fixed, passing or ready, run the checks and show what they printed.
+"It should work" is not evidence. Before saying a story or fix is done, fixed, passing or ready, run the checks and show what they printed.
 
 ## 1. Run every gate (fresh, not from memory)
 Use the commands in `CLAUDE.md` → Commands. Typically:
@@ -13,11 +13,14 @@ Use the commands in `CLAUDE.md` → Commands. Typically:
 ```bash
 npm run lint
 npm test
-bash scripts/check-design-tokens.sh
-npm run build        # if the project has a build step
+npm run test:e2e                     # if the project defines it
+npm run build                        # if the project has a build step
+bash scripts/check-design-tokens.sh  # if the script exists
 ```
 
 Run them now, after your last change. A result from before your last edit doesn't count.
+
+For a change you can see or click in the app, also run the app and look at the result (Claude Code's built-in `/verify` does this where your version includes it).
 
 ## 2. Check the acceptance criteria one by one
 For each AC in the story:
@@ -28,7 +31,7 @@ For each AC in the story:
 ```bash
 git status
 git diff --stat
-git diff
+git diff main...HEAD
 ```
 - Only files the story needs are changed. No stray debug logs, commented-out code, `.only`/`.skip`, or TODOs you added.
 - No secrets, no `.env`, no generated files.
@@ -40,4 +43,4 @@ State what you ran and the result, quoting the key output lines, e.g.:
 > `npm test`: 42 passed, 0 failed · `npm run lint`: no problems · token check: OK · AC1 → `tag-filter.test.ts: keeps filter in URL` ✓ · AC3: not covered by a test; checked manually in the browser.
 
 ## If anything fails
-Don't report success, and don't soften it ("mostly works", "should be fine"). Say what failed, show the output, and either fix it (use the debug skill for anything non-obvious) or stop and ask.
+Don't report success, and don't soften it ("mostly works", "should be fine"). Say what failed, show the output, and either fix it (use the fix-bug skill for anything non-obvious) or stop and ask.

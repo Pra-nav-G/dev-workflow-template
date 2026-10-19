@@ -11,7 +11,7 @@ Target: $ARGUMENTS (a story id like `S-14`, or a behaviour). If empty, use the s
 Tests are where judgment lives: they're the executable form of the acceptance criteria. Write them first so they test what the story asks for, not whatever the code happens to do.
 
 ## 0. Know what "done" means
-- Read the story's acceptance criteria in `build-plan.md` and `.claude/rules/testing.md`.
+- Read the story's acceptance criteria in `build-plan.md` and the testing standard in `.claude/rules/testing.md` (if present).
 - Turn each AC into one or more test cases, in plain words, before writing code. Include the empty, error and loading states the AC or `design-system/components.md` mention.
 - If an AC can't be turned into a test (it's vague, like "fast" or "nice"), stop and ask what observable result would prove it.
 
@@ -35,8 +35,8 @@ One behaviour per loop until every AC has a passing test. Commit after each gree
 - **Never delete or skip a failing test** to get green (`.skip`, `xit`, commenting out). Fix the code, or stop and ask.
 - **Test behaviour, not implementation.** Assert what a user or caller sees (output, rendered text, URL, stored data), not private functions or internal state.
 - **Mock only at the edges**: network, time, randomness, third-party services. Don't mock the code under test.
-- **Bug fixes start with a test that reproduces the bug** and fails, then the fix (see the debug skill).
+- **Bug fixes start with a test that reproduces the bug** and fails, then the fix (see the fix-bug skill).
 - Keep tests fast and independent: no shared state between tests, no order dependence, no real network.
 
 ## Done
-Every AC maps to at least one passing test; the full suite, lint and `bash scripts/check-design-tokens.sh` pass. List the AC-to-test mapping in the PR description.
+Every AC maps to at least one passing test. Then use the prove-it skill to run every check and show the evidence, and list the AC-to-test mapping in the PR description.

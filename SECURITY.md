@@ -19,7 +19,7 @@ Only the latest version on `main` receives security fixes.
 
 ## How this project handles security
 
-- Secrets live in environment variables, never in the repo. A pre-commit hook and CI block committed `.env` files and common secret patterns.
+- Secrets live in environment variables, never in the repo. A Claude Code hook stops the coding agent from committing `.env` files or common secret patterns, and CI fails if a `.env` file is ever committed. GitHub secret scanning with push protection covers everyone else's pushes.
 - Dependencies are checked by `npm audit` in CI, GitHub dependency review on pull requests, and Dependabot.
 - Code is scanned by CodeQL.
-- Changes touching auth, payments or personal data get an independent security review before merging.
+- Changes touching auth, payments, personal data, file uploads or user-generated content get an independent security review before merging.

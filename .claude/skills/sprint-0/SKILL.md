@@ -11,17 +11,17 @@ Goal: one thin path through the whole stack, using real tokens, that validates t
 ## Before you start
 1. Read `build-plan.md` (§4 Build order, §5 Sprint 0, epic E0), `CLAUDE.md`, and `design-system/` (tokens.css, components.md).
 2. If any of these still contain template placeholders like `[Project Name]` or `[Story title]`, stop and tell the user which ones. Sprint 0 builds on real plans, not templates.
-3. Propose the plan in plan mode: stack setup, the one screen or route you'll build end to end, the one real component, and the tests. Wait for approval.
+3. Propose the plan in plan mode: stack setup (including every package the scaffold will install), the one screen or route you'll build end to end, the one real component, and the tests. Wait for approval.
 
 ## Build (on a branch: `s00-walking-skeleton`)
-- [ ] Scaffold the stack named in `CLAUDE.md` → Stack & conventions. Ask before adding any dependency not named there.
+- [ ] Scaffold the stack named in `CLAUDE.md` → Stack & conventions, installing only the packages approved in your plan. Any other dependency needs the user's OK first, as `CLAUDE.md` requires.
 - [ ] Import `design-system/tokens.css` globally (and `tailwind.config.js` if the stack uses Tailwind).
 - [ ] Build one real component from `design-system/components.md` with all its listed states.
 - [ ] Wire one screen or route end to end: UI → logic → data (a stub or local data store is fine).
-- [ ] Add at least one test that exercises that path, plus lint.
-- [ ] Make sure `npm run lint`, `npm test` and `bash scripts/check-design-tokens.sh` pass.
+- [ ] Write the test for that path first (tdd skill), plus lint config.
 - [ ] Confirm `.env` is in `.gitignore` and `.env.example` lists any variables you introduced.
 - [ ] Update `CLAUDE.md` → Commands if the real commands differ from the template.
+- [ ] Use the prove-it skill: every check in `CLAUDE.md` → Commands passes, with output shown.
 
 ## Docs (same branch)
 - [ ] Tick the Sprint 0 checklist and S-00 status in `build-plan.md`.

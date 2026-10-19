@@ -18,7 +18,7 @@ Claude Chat   → marketing-doc.md ──┬→ design-plan.md → Claude Design
   /plugin marketplace add Pra-nav-G/dev-workflow-template
   /plugin install think-design-build@dev-workflow-template
   ```
-  Plugin skills are namespaced, e.g. `/think-design-build:debug`. Skills like `/implement-story` expect this template's files (`build-plan.md`, `design-system/`); `tdd`, `debug`, `verify`, `grill-me`, `handoff` and `security-audit` work in any project. Don't install the plugin into a project made from this template: you'd get every hook twice.
+  Plugin skills are namespaced, e.g. `/think-design-build:fix-bug`. `tdd`, `fix-bug`, `prove-it`, `grill-me`, `handoff`, `security-audit` and both subagents work in any project; `/implement-story`, `/sprint-0`, `/check-spec` and `/sync-docs` expect this template's planning files (`build-plan.md`, `design-system/`). Plugins can't ship `CLAUDE.md` or `.claude/rules/`, so copy `.claude/rules/security.md` and `testing.md` into your project if you want those standards too. Don't install the plugin into a project made from this template: you'd get every hook twice.
 
 ## What's in this repo
 ```
@@ -32,7 +32,8 @@ Claude Chat   → marketing-doc.md ──┬→ design-plan.md → Claude Design
 ├── design-system/                 ← tokens.css, tailwind.config.js, components.md
 ├── docs/
 │   ├── decisions/                 ← one file per technical decision
-│   └── changes/                   ← one proposal per scope change (/sync-docs)
+│   ├── changes/                   ← one proposal per scope change (/sync-docs)
+│   └── handoffs/                  ← created by /handoff (security-audit and review-prep reports stay local, gitignored)
 ├── scripts/
 │   ├── init.sh                    ← run once: names, owners, badge, permissions
 │   └── check-design-tokens.sh     ← fails on hard-coded colours/sizes (in CI)
@@ -45,7 +46,7 @@ Claude Chat   → marketing-doc.md ──┬→ design-plan.md → Claude Design
 │       └── codeql.yml             ← security scanning when app code changes
 ├── .claude/
 │   ├── settings.json              ← permissions + hook wiring
-│   ├── rules/                     ← git-workflow, design-system, testing, security
+│   ├── rules/                     ← git-workflow, security (always on); design-system, testing (for matching files)
 │   ├── skills/                    ← see "Slash commands" below
 │   ├── agents/                    ← reviewer, security-reviewer (independent subagents)
 │   ├── hooks/                     ← block-secrets.sh, format-file.sh
@@ -107,3 +108,4 @@ Not sure which slide a file came from? See `playbook/slide-map.md`. Testing, deb
 - Edit subagents in `.claude/agents/`, then `cp .claude/agents/*.md agents/`. CI fails if the two folders differ, because the plugin ships from `agents/`.
 - Bump `version` in `.claude-plugin/plugin.json` when you change skills, so plugin users get the update.
 - Check the plugin with `claude plugin validate .` (one expected warning: the template's own `CLAUDE.md` isn't shipped as plugin context).
+- After editing `CLAUDE.md`, rules or skills, run `/doctor prompt-audit` in Claude Code to catch outdated or conflicting instructions. Keep each rule in one place: `CLAUDE.md` summarizes and points to `.claude/rules/` for detail.

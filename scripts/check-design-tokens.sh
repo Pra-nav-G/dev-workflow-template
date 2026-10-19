@@ -3,19 +3,19 @@
 # Fails if app code hard-codes colours or pixel sizes instead of using design-system tokens.
 # "A story is not done unless it uses the system — no bespoke styles."
 #
-# Usage: bash scripts/check-design-tokens.sh [dir ...]     (default: src)
+# Usage: bash scripts/check-design-tokens.sh [dir ...]     (default: src app components pages)
 # Escape hatch for a genuine exception: put "design-system-ignore" in a comment on that line.
 # Allowed: 0px and 1px (hairlines), and anything inside design-system/.
 
 set -u
 
 dirs=("$@")
-[ ${#dirs[@]} -eq 0 ] && dirs=(src)
+[ ${#dirs[@]} -eq 0 ] && dirs=(src app components pages)
 
 existing=()
 for d in "${dirs[@]}"; do [ -d "$d" ] && existing+=("$d"); done
 if [ ${#existing[@]} -eq 0 ]; then
-  echo "design-token check: no ${dirs[*]} folder yet, nothing to check."
+  echo "design-token check: no app code yet (looked in: ${dirs[*]}), nothing to check."
   exit 0
 fi
 

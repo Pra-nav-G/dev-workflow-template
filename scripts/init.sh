@@ -92,6 +92,6 @@ echo "  3. Protect main (GitHub → Settings → Branches → Add rule for main)
 echo "       - Require a pull request before merging"
 echo "       - Require status checks to pass → select \"test\""
 echo "       - Teams only: Require review from Code Owners (then edit .github/CODEOWNERS roles)"
-echo "  4. Follow START-HERE.md from step 2 (Think)."
+echo "  4. Follow START-HERE.md → \"How to use it on a new project\" from step 2 (GitHub security settings)."
 [ -z "$slug" ] && echo "  (No GitHub remote found: update the CI badge in README.md once you push.)"
 exit 0

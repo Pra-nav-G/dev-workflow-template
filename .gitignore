@@ -30,5 +30,8 @@ npm-debug.log*
 .claude/settings.local.json
 CLAUDE.local.md
 
-# Personal review prep from /prep-review
+# Local-only reports (never commit)
+# /prep-review notes
 docs/review-prep.md
+# /security-audit reports: unfixed vulnerabilities must not be public
+docs/security-audit-*.md

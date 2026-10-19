@@ -69,8 +69,8 @@ These aren't in the talk. They enforce its rules (slide 26 warns against "rules 
 | Pitch prompt | "The pitch is an edit of it" (slide 21) |
 | `scripts/init.sh`, `.env.example`, `LICENSE`, `CLAUDE.local.md`, `.editorconfig` | Setup and hygiene |
 | `docs/decisions/`, story issue template | Decision trail and stories that reviewers can read (slides 21, 34) |
-| `tdd`, `verify` skills, `.claude/rules/testing.md`, e2e step in CI | "Write or review the tests yourself. Tests are where your judgment lives" (slide 32) |
-| `debug` skill | "Spotting when the output is wrong" (slide 32) |
+| `tdd`, `prove-it` skills, `.claude/rules/testing.md`, e2e step in CI | "Write or review the tests yourself. Tests are where your judgment lives" (slide 32) |
+| `fix-bug` skill | "Spotting when the output is wrong" (slide 32) |
 | `security-reviewer`, `/security-audit`, `.claude/rules/security.md`, CodeQL, npm audit, dependency review, Dependabot, `SECURITY.md` | "Secrets never enter the repo" (slide 31), extended to the rest of security |
 | `/check-spec`, `docs/changes/` | "Stale documentation is how the agent starts guessing again" (slide 24) |
 | `/grill-me` | "Before assuming, ask" (slide 26) |
